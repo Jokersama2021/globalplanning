@@ -12,33 +12,33 @@ using std::vector, std::unordered_set, std::unique_ptr, std::make_unique;
 
 namespace NAVIGATION
 {
-	enum NodeType//节点（命令行打印）
+	enum NodeType//命令行打印
 	{
 		normal,
 		start,
 		end,
 		obs,
-		result_way,//路径点
+		result_way,
 	};
 
-	class Node//节点
+	class Node
 	{
 	public:
-		Node() = default;//默认构造
+		Node() = default;
 		Node(const int& r, const int& c, const int& type = NodeType::normal);//有参构造，传入行和列，默认为普通节点
 		void drawNode() const;//绘制节点
 
 		bool operator<(const Node& other_node) const { return this->f > other_node.f; }//重载<，用于创建小顶堆的优先队列
 
 	public:
-		int row = 0;//行
-		int col = 0;//列
+		int row = 0;
+		int col = 0;
 
 		int f = 0;//该点的综合代价
 		int g = 0;//起点到该点的累计代价
 		int h = 0;//该点到终点的启发代价
 
-		int node_type = NodeType::normal;//节点类型
+		int node_type = NodeType::normal;
 		Node* parent_node = nullptr;//结果节点的父节点
 	};
 
